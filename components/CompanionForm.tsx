@@ -63,7 +63,7 @@ const CompanionForm = () => {
                         <FormItem>
                             <FormLabel>Companion name</FormLabel>
                             <FormControl>
-                                <Input placeholder="Enter the companion name" {...field} />
+                                <Input placeholder="Enter the companion name" {...field}  className="input" />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -83,8 +83,8 @@ const CompanionForm = () => {
                                     value={field.value}
                                     defaultValue={field.value}
                                 >
-                                    <SelectTrigger>
-                                        <SelectValue placeholder="Select the subject" />
+                                    <SelectTrigger className="input capitalize">
+                                        <SelectValue placeholder="Select the subject"  />
                                     </SelectTrigger>
                                     <SelectContent>
                                         {subjects.map((subject) => (
@@ -111,7 +111,7 @@ const CompanionForm = () => {
                                 <Textarea
                                     placeholder="Ex. Derivatives & Integrals"
                                     {...field}
-                                />
+className="input"/>
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -130,8 +130,8 @@ const CompanionForm = () => {
                                     onValueChange={field.onChange}
                                     value={field.value}
                                     defaultValue={field.value}
-                                >
-                                    <SelectTrigger>
+>
+                                    <SelectTrigger className="input capitalize">
                                         <SelectValue placeholder="Select the voice" />
                                     </SelectTrigger>
                                     <SelectContent>
@@ -158,7 +158,7 @@ const CompanionForm = () => {
                                     value={field.value}
                                     defaultValue={field.value}
                                 >
-                                    <SelectTrigger>
+                                    <SelectTrigger className="input capitalize">
                                         <SelectValue placeholder="Select the style" />
                                     </SelectTrigger>
                                     <SelectContent>
@@ -180,7 +180,7 @@ const CompanionForm = () => {
                         <FormItem>
                             <FormLabel>Estimated session duration (minutes)</FormLabel>
                             <FormControl>
-                                <Input type="number" placeholder="15" {...field} />
+                                <Input type="number" placeholder="15" {...field} className="input"/>
                             </FormControl>
                             <FormMessage />
                         </FormItem>
