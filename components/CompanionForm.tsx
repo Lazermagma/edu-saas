@@ -31,10 +31,11 @@ const formSchema = z.object({
     topic: z.string().min(1, { message: "Topic is required." }),
     voice: z.string().min(1, { message: "Voice is required." }),
     style: z.string().min(1, { message: "Style is required." }),
-    duration: z.number().min(1, { message: "Duration is required." }),
+    duration: z.coerce.number().min(1, { message: "Duration is required." }),
 });
 
 const CompanionForm = () => {
+
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -48,7 +49,14 @@ const CompanionForm = () => {
     });
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
-        console.log(values)
+      const companion = await createCompanion(values);
+
+        if(companion) {
+            redirect(`/companions/${companion.id}`);
+        } else {
+            console.log('Failed to create a companion');
+            redirect('/');
+        }
 
     };
 
@@ -178,9 +186,14 @@ className="input"/>
                     name="duration"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Estimated session duration (minutes)</FormLabel>
+                            <FormLabel>Estimated session duration in minutes</FormLabel>
                             <FormControl>
-                                <Input type="number" placeholder="15" {...field} className="input"/>
+                                <Input
+                                    type="number"
+                                    placeholder="15"
+                                    {...field}
+                                    className="input"
+                                />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
